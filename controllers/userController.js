@@ -1,6 +1,6 @@
 const mysql = require("../db/mysql");
 const { CODE_SUCCESS } = require("../util/constants");
-const { isJSON, resolver } = require("../util");
+const { resolver } = require("../util");
 
 function getUsers(req, res, next) {
   mysql.query(`SELECT * FROM USER;`).then((data) => {
@@ -34,11 +34,7 @@ function deleteUser(req, res) {
 }
 
 function updateUser(req, res) {
-  let newData = req.body;
-  if (isJSON(newData)) {
-    newData = JSON.parse(newData);
-  }
-  let { id, user_name, password } = newData;
+  const { id, user_name, password } = req.body;
   mysql
     .query(
       `UPDATE USER SET user_name='${user_name}', password=MD5('${password}') WHERE id=${id};`
@@ -84,5 +80,5 @@ module.exports = {
   deleteUser,
   updateUser,
   uploadUserImage,
-  getUserImage
+  getUserImage,
 };
