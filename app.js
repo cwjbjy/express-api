@@ -18,6 +18,6 @@ app.use(cors()); // 注入cors模块解决跨域
 
 app.use("/", routes);
 
-app.listen(4000, () => {
-  console.log("server is running port 4000");
+app.listen(9000, () => {
+  console.log("server is running port 9000");
 });

@@ -1,6 +1,6 @@
 const WebSocket = require("ws");
 
-const wss = new WebSocket.WebSocketServer({ port: 4001 });
+const wss = new WebSocket.WebSocketServer({ port: 3999 });
 
 //广播
 function broadcast(data) {
