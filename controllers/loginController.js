@@ -9,7 +9,7 @@ const {
 } = require("../util/constants");
 const { resolver } = require("../util");
 
-function login(req, res, next) {
+exports.login = function (req, res, next) {
   const { userName, passWord } = req.body;
 
   const md5_password = utility.md5(passWord);
@@ -23,7 +23,7 @@ function login(req, res, next) {
       if (Data.length !== 0) {
         jwt.sign(
           // payload：签发的 token 里面要包含的一些数据
-          { userName, passWord },
+          { userName },
           // 私钥
           PRIVATE_KEY,
           // 设置过期时间
@@ -74,9 +74,9 @@ function login(req, res, next) {
         });
       }
     });
-}
+};
 
-function register(req, res, next) {
+exports.register = function (req, res, next) {
   const { userName, passWord, authority, createTime, photo } = req.body;
   mysql
     .query(`SELECT * FROM USER WHERE user_name='${userName}';`)
@@ -100,9 +100,4 @@ function register(req, res, next) {
         });
       }
     });
-}
-
-module.exports = {
-  login,
-  register,
 };

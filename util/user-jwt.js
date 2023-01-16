@@ -1,20 +1,12 @@
 var { expressjwt: jwt } = require("express-jwt");
-
+const { PRIVATE_KEY } = require("./constants");
 // 验证token是否过期
 const jwtAuth = jwt({
-  secret: "caowj",
-  algorithms: ["HS256"],
-  // true自动校验，false表示不校验，走自定义校验
-  credentialsRequired: false,
-  // 自定义获取token的函数
-  getToken: (req) => {
-    if (req.headers.Authorization) {
-      return req.headers.Authorization;
-    } else if (req.query && req.query.token) {
-      return req.query.token;
-    }
-  },
+  secret: PRIVATE_KEY, //密匙
+  algorithms: ["HS256"], //签名算法
   // 设置jwt认证白名单
-}).unless({ path: ["/", "/api/login", "/api/register"] });
+}).unless({
+  path: ["/api/login", "/api/register", "/api/trackweb", "/api/getUserInfo"],
+});
 
 module.exports = jwtAuth;

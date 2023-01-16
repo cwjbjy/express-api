@@ -1,7 +1,7 @@
 const mysql = require("../db/mysql");
 const { CODE_SUCCESS } = require("../util/constants");
 
-function getUserInfo(req, res) {
+exports.getUserInfo = function (req, res) {
   const params = JSON.parse(req.query.data);
   const { vs, deviceType, url, referer, localTime, delay } = params;
   mysql
@@ -13,9 +13,9 @@ function getUserInfo(req, res) {
         code: CODE_SUCCESS,
       });
     });
-}
+};
 
-function trackWeb(req, res) {
+exports.trackWeb = function trackWeb(req, res) {
   const params = JSON.parse(req.body);
   const { browserType: deviceType, appName: vs } = params.baseInfo;
   const { url, referer, triggerTime: localTime, delay } = params.eventInfo[0];
@@ -28,9 +28,4 @@ function trackWeb(req, res) {
         code: CODE_SUCCESS,
       });
     });
-}
-
-module.exports = {
-  getUserInfo,
-  trackWeb,
 };
