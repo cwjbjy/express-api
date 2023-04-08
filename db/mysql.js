@@ -1,7 +1,7 @@
 const mysql = require("mysql");
 const pool = mysql.createPool({
   connectionLimit: 10, //最大连接数，默认为10
-  host: "47.101.161.174", // 数据库服务器地址
+  host: "150.158.94.72", // 数据库服务器地址
   port: 3306, //数据库端口
   user: "manage", // 连接名
   password: "123456", // 数据库密码
