@@ -1,6 +1,6 @@
 //查询用户-用户名，密码
-exports.getUser = (userName, md5_password) =>
-  `SELECT * FROM USER WHERE user_name='${userName}' and password='${md5_password}';`;
+exports.getUser = (userName, passWord) =>
+  `SELECT * FROM USER WHERE user_name='${userName}' and password='${passWord}';`;
 
 //查询用户-用户名
 exports.getUserfromName = (userName) =>
@@ -19,14 +19,14 @@ exports.getUserImage = (user_name) =>
 
 //新增用户
 exports.addUser = (userName, passWord, authority, createTime, photo) =>
-  `INSERT INTO USER (user_name,password,authority,createTime,photo) VALUES ('${userName}',MD5('${passWord}'),'${authority}','${createTime}','${photo}');`;
+  `INSERT INTO USER (user_name,password,authority,createTime,photo) VALUES ('${userName}','${passWord}','${authority}','${createTime}','${photo}');`;
 
 //删除用户
 exports.deleteUser = (id) => `DELETE FROM USER WHERE id='${id}';`;
 
 //更新用户
 exports.updateUser = (id, user_name, password) =>
-  `UPDATE USER SET user_name='${user_name}', password=MD5('${password}') WHERE id=${id};`;
+  `UPDATE USER SET user_name='${user_name}', password='${password}' WHERE id=${id};`;
 
 //更新用户头像信息
 exports.updateUserImage = (filename, user_name) =>

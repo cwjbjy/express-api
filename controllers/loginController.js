@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const utility = require("utility");
 const mysql = require("../db/mysql");
 const { resolver } = require("../util");
 const userService = require("../service/userService");
@@ -13,9 +12,7 @@ const {
 exports.login = function (req, res) {
   const { userName, passWord } = req.body;
 
-  const md5_password = utility.md5(passWord);
-
-  mysql.query(userService.getUser(userName, md5_password)).then((data) => {
+  mysql.query(userService.getUser(userName, passWord)).then((data) => {
     let Data = resolver(data);
     if (Data.length !== 0) {
       jwt.sign(
@@ -80,13 +77,7 @@ exports.register = function (req, res) {
     if (Data.length === 0) {
       mysql
         .query(
-          userService.addUser(
-            userName,
-            passWord,
-            authority,
-            createTime,
-            photo
-          )
+          userService.addUser(userName, passWord, authority, createTime, photo)
         )
         .then(() => {
           res.json({
