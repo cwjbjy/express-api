@@ -5,11 +5,16 @@ const trackService = require("../service/trackService");
 exports.track = function track(req, res) {
   const params = JSON.parse(req.body);
   if (Array.isArray(params) && params.length > 0) {
-    let count = 0,
-      length = params.length;
+    let count = 0;
     const loop = () => {
       const item = params[count];
       count++;
+      if (!item) {
+        res.json({
+          code: CODE_SUCCESS,
+        });
+        return;
+      }
       const {
         userData: { vs },
         device: { browser },
@@ -23,13 +28,7 @@ exports.track = function track(req, res) {
           trackService.addTrackWeb(vs, browser, url, referrer, date, duration)
         )
         .then(() => {
-          if (count > length) {
-            res.json({
-              code: CODE_SUCCESS,
-            });
-          } else {
-            loop();
-          }
+          loop();
         });
     };
     loop();
