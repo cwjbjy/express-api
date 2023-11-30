@@ -10,6 +10,7 @@ const jwtAuth = jwt({
     "/api/login",
     "/api/register",
     "/api/track",
+    "/api/trackweb",
     "api/list",
     "/images/userlogo.png",
   ],

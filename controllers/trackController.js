@@ -38,3 +38,18 @@ exports.track = function track(req, res) {
     });
   }
 };
+
+exports.trackWeb = function trackWeb(req, res) {
+  const params = JSON.parse(req.body);
+  const { browserType: deviceType, appName: vs } = params.baseInfo;
+  const { url, referer, triggerTime: localTime, delay } = params.eventInfo[0];
+  mysql
+    .query(
+      trackService.addTrackVue(vs, deviceType, url, referer, localTime, delay)
+    )
+    .then(() => {
+      res.json({
+        code: CODE_SUCCESS,
+      });
+    });
+};
