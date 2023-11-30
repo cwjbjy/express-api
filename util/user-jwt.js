@@ -6,7 +6,13 @@ const jwtAuth = jwt({
   algorithms: ["HS256"], //签名算法
   // 设置jwt认证白名单
 }).unless({
-  path: ["/api/login", "/api/register", '/api/track'],
+  path: [
+    "/api/login",
+    "/api/register",
+    "/api/track",
+    "api/list",
+    "/images/userlogo.png",
+  ],
 });
 
 module.exports = jwtAuth;
