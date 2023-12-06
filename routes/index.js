@@ -4,6 +4,7 @@ const testRouter = require("./test");
 const userRouter = require("./user");
 const loginRouter = require("./login");
 const trackRouter = require("./track");
+const moneyRouter = require("./money");
 
 const router = express.Router();
 
@@ -13,6 +14,7 @@ router.use("/api", testRouter); // 测试路由
 router.use("/api", userRouter); // 用户路由
 router.use("/api", loginRouter); // 登录路由
 router.use("/api", trackRouter); // 信息收集路由
+router.use("/api", moneyRouter); // 理财分析路由
 
 // 自定义统一异常处理中间件，需要放在代码最后
 router.use((err, req, res, next) => {

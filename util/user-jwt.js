@@ -11,7 +11,9 @@ const jwtAuth = jwt({
     "/api/register",
     "/api/track",
     "/api/trackweb",
-    "api/list",
+    "/api/list",
+    '/api/addData',
+    '/api/getAllData',
     "/images/userlogo.png",
   ],
 });
