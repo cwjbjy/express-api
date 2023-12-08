@@ -14,6 +14,7 @@ const jwtAuth = jwt({
     "/api/list",
     '/api/addData',
     '/api/getAllData',
+    '/api/getEarnings',
     "/images/userlogo.png",
   ],
 });

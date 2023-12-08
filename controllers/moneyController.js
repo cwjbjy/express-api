@@ -4,9 +4,9 @@ const { resolver } = require("../util");
 const { CODE_SUCCESS } = require("../util/constants");
 
 exports.add = function addData(req, res) {
-  const { dataName,dataDate,dataNum,dataMoney,atomMoney } = req.body;
+  const { dataName, dataDate, dataNum, dataMoney, atomMoney } = req.body;
   mysql
-    .query(moneyService.add(dataName,dataDate,dataNum,dataMoney,atomMoney))
+    .query(moneyService.add(dataName, dataDate, dataNum, dataMoney, atomMoney))
     .then(() => {
       res.json({
         code: CODE_SUCCESS,
@@ -25,4 +25,29 @@ exports.getAll = function getData(req, res) {
       });
     })
     .catch((err) => {});
+};
+
+exports.getEarnings = function getEarnings(req, res) {
+  const { date } = req.query;
+  if (date) {
+    mysql
+      .query(moneyService.earnings(date))
+      .then((data) => {
+        res.json({
+          code: CODE_SUCCESS,
+          data: resolver(data),
+        });
+      })
+      .catch((err) => {});
+  } else {
+    mysql
+      .query(moneyService.getData)
+      .then((data) => {
+        res.json({
+          code: CODE_SUCCESS,
+          data: resolver(data),
+        });
+      })
+      .catch((err) => {});
+  }
 };
