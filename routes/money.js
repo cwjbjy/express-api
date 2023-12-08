@@ -9,4 +9,6 @@ router.get("/getAllData", moneyController.getAll);
 
 router.get("/getEarnings", moneyController.getEarnings);
 
+router.get("/financialLogin", moneyController.financialLogin);
+
 module.exports = router;

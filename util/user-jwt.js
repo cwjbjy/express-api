@@ -15,6 +15,7 @@ const jwtAuth = jwt({
     '/api/addData',
     '/api/getAllData',
     '/api/getEarnings',
+    '/api/financialLogin',
     "/images/userlogo.png",
   ],
 });
