@@ -11,20 +11,6 @@ function broadcast(data) {
   });
 }
 
-//心跳
-// function heartbeat() {
-//   this.isAlive = true;
-// }
-
-// const interval = setInterval(function ping() {
-//   wss.clients.forEach(function each(ws) {
-//     if (ws.isAlive === false) return ws.terminate();
-
-//     ws.isAlive = false;
-//     ws.ping();
-//   });
-// }, 30000);
-
 //每一次连接都会生成一个新的wss实例
 wss.on("connection", function connection(ws, req) {
   ws.on("message", function message(message) {
@@ -59,7 +45,6 @@ wss.on("connection", function connection(ws, req) {
         break;
     }
   });
-//   ws.on("pong", heartbeat);
 });
 
 wss.on("close", function close() {

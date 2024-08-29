@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser"); // 引入body-parser模块
 var path = require("path");
 const cors = require("cors");
-require("./util/ws");
+require("./util/socket");
 
 const routes = require("./routes");
 
